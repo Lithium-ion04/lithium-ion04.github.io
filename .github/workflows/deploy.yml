@@ -23,6 +23,7 @@ jobs:
     - name: Install Dependencies
       run: |
         npm install
+        npm install hexo-cli -g
         npm install hexo-renderer-pug hexo-renderer-stylus
 
     - name: Generate Static Files
@@ -36,3 +37,5 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./public
         force_orphan: true
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
