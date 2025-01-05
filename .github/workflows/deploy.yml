@@ -21,13 +21,18 @@ jobs:
         node-version: '18'
 
     - name: Install Dependencies
-      run: npm install
+      run: |
+        npm install
+        npm install hexo-renderer-pug hexo-renderer-stylus
 
     - name: Generate Static Files
-      run: npx hexo generate
+      run: |
+        hexo clean
+        hexo generate
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./public
+        force_orphan: true
